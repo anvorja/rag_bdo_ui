@@ -1,21 +1,40 @@
-import { Button } from "@/components/ui/button"
+import { lazy, Suspense } from "react"
+import { BrowserRouter, Navigate, Route, Routes } from "react-router"
+import { RutaProtegida } from "@/components/auth/RutaProtegida"
+import { AreaPrivada } from "@/components/layout/AreaPrivada"
+import { AppProviders } from "@/providers/AppProviders"
+import { CargandoPagina } from "@/components/comun/CargandoPagina"
+import Consultar from "@/pages/Consultar"
+import Ingresar from "@/pages/Ingresar"
+import NoEncontrada from "@/pages/NoEncontrada"
 
-export function App() {
+const Conocimiento = lazy(() => import("@/pages/Conocimiento"))
+
+export default function App() {
   return (
-    <div className="flex min-h-svh p-6">
-      <div className="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
-        <div>
-          <h1 className="font-medium">Project ready!</h1>
-          <p>You may now add components and start building.</p>
-          <p>We&apos;ve already added the button component for you.</p>
-          <Button className="mt-2">Button</Button>
-        </div>
-        <div className="font-mono text-xs text-muted-foreground">
-          (Press <kbd>d</kbd> to toggle dark mode)
-        </div>
-      </div>
-    </div>
+    <AppProviders>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/ingresar" element={<Ingresar />} />
+          <Route element={<RutaProtegida />}>
+            <Route element={<AreaPrivada />}>
+              <Route index element={<Navigate to="/consultar" replace />} />
+              <Route path="/consultar" element={<Consultar />} />
+              <Route element={<RutaProtegida permiso="baseConocimiento" />}>
+                <Route
+                  path="/conocimiento"
+                  element={
+                    <Suspense fallback={<CargandoPagina />}>
+                      <Conocimiento />
+                    </Suspense>
+                  }
+                />
+              </Route>
+              <Route path="*" element={<NoEncontrada />} />
+            </Route>
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </AppProviders>
   )
 }
-
-export default App
