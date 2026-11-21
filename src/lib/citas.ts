@@ -53,21 +53,30 @@ export function palabrasClave(texto: string) {
   return new Set(palabras.filter((p) => !VACIAS.has(p)))
 }
 
+/** Un año suelto («2026») es una cifra débil: aparece en fechas de vigencia, no en el dato. */
+const esAnio = (c: string) => /^(19|20)\d{2}$/.test(c)
+
 /**
  * La línea del fragmento que respalda la respuesta: debe contener una cifra de la respuesta Y
  * compartir al menos una palabra clave con ella (una cifra sola puede ser el precio de otro servicio).
- * Gana la que comparte más palabras. Devuelve -1 si ninguna cumple.
+ * Pesan más las cifras que son el dato (tasas, valores) que los años; luego, las palabras compartidas.
+ * Devuelve -1 si ninguna cumple.
  */
 export function mejorLinea(lineas: string[], referencia: string) {
   const cifras = extraerCifras(referencia)
+  if (!cifras.length) return -1
+  const fuertes = cifras.filter((c) => !esAnio(c))
   const claves = palabrasClave(referencia)
   let mejor = -1
   let puntaje = 0
   lineas.forEach((l, i) => {
-    if (!cifras.length || !contieneCifra(l, cifras)) return
+    if (!contieneCifra(l, cifras)) return
     const compartidas = [...palabrasClave(l)].filter((p) => claves.has(p)).length
-    if (compartidas > puntaje) {
-      puntaje = compartidas
+    if (!compartidas) return
+    const datos = fuertes.filter((c) => contieneCifra(l, [c])).length
+    const total = datos * 3 + compartidas
+    if (total > puntaje) {
+      puntaje = total
       mejor = i
     }
   })

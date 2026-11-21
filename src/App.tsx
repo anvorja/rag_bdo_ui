@@ -1,14 +1,16 @@
-import { lazy, Suspense } from "react"
+import { Suspense } from "react"
 import { BrowserRouter, Navigate, Route, Routes } from "react-router"
 import { RutaProtegida } from "@/components/auth/RutaProtegida"
 import { AreaPrivada } from "@/components/layout/AreaPrivada"
 import { AppProviders } from "@/providers/AppProviders"
 import { CargandoPagina } from "@/components/comun/CargandoPagina"
+import { LimiteError } from "@/components/comun/LimiteError"
+import { lazyConReintento } from "@/lib/carga"
 import Consultar from "@/pages/Consultar"
 import Ingresar from "@/pages/Ingresar"
 import NoEncontrada from "@/pages/NoEncontrada"
 
-const Conocimiento = lazy(() => import("@/pages/Conocimiento"))
+const Conocimiento = lazyConReintento(() => import("@/pages/Conocimiento"))
 
 export default function App() {
   return (
@@ -24,9 +26,11 @@ export default function App() {
                 <Route
                   path="/conocimiento"
                   element={
-                    <Suspense fallback={<CargandoPagina />}>
-                      <Conocimiento />
-                    </Suspense>
+                    <LimiteError zona="la base de conocimiento">
+                      <Suspense fallback={<CargandoPagina />}>
+                        <Conocimiento />
+                      </Suspense>
+                    </LimiteError>
                   }
                 />
               </Route>

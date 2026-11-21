@@ -1,14 +1,16 @@
-import { lazy, Suspense, useState } from "react"
+import { Suspense, useState } from "react"
 import { Outlet, useLocation } from "react-router"
 import { SquarePenIcon } from "lucide-react"
+import { LimiteError } from "@/components/comun/LimiteError"
 import { Button } from "@/components/ui/button"
+import { lazyConReintento } from "@/lib/carga"
 import { Sheet, SheetContent, SheetDescription, SheetTitle } from "@/components/ui/sheet"
 import { useChat } from "@/hooks/useChat"
 import { useVisor } from "@/hooks/useVisor"
 import { BarraLateral } from "./BarraLateral"
 import { Encabezado } from "./Encabezado"
 
-const VisorDocumento = lazy(() =>
+const VisorDocumento = lazyConReintento(() =>
   import("@/components/visor/VisorDocumento").then((m) => ({ default: m.VisorDocumento }))
 )
 
@@ -60,12 +62,16 @@ export function AppShell() {
         <Encabezado alAbrirMenu={() => setMenu(true)} acciones={accionChat} />
         <div className="flex min-h-0 min-w-0 flex-1">
           <main id="contenido" tabIndex={-1} className="min-w-0 flex-1 overflow-y-auto overscroll-contain outline-none">
-            <Outlet />
+            <LimiteError zona="esta página">
+              <Outlet />
+            </LimiteError>
           </main>
           {objetivo && (
-            <Suspense fallback={null}>
-              <VisorDocumento />
-            </Suspense>
+            <LimiteError zona="el documento" alCerrar={cerrar} key={objetivo.docId}>
+              <Suspense fallback={null}>
+                <VisorDocumento />
+              </Suspense>
+            </LimiteError>
           )}
         </div>
       </div>
