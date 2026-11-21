@@ -46,6 +46,20 @@ El ingreso pide correo, contraseña y perfil, y **se valida solo en el navegador
 | Empleado | Sí | Útil, correcta y comentario | Sí | No |
 | Admin | Sí | Útil, correcta y comentario | Sí | Catálogo, búsqueda en las fuentes, visor y estado del servicio |
 
+### Usuarios de prueba
+
+Para las pruebas del piloto se usan estos tres usuarios, uno por perfil:
+
+| Perfil | Correo | Contraseña |
+|---|---|---|
+| Cliente | `cliente.prueba@example.com` | `PilotoRag2026` |
+| Empleado | `empleado.prueba@example.com` | `PilotoRag2026` |
+| Admin | `admin.prueba@example.com` | `PilotoRag2026` |
+
+Al ingresar, elige también el perfil en las tarjetas del formulario. El perfil decide los permisos, no el correo.
+
+Estos datos no son secretos. El panel no guarda cuentas: acepta cualquier correo con formato válido y cualquier contraseña de al menos 8 caracteres. La contraseña no se envía ni se guarda en ningún lado. Los correos usan `example.com`, un dominio reservado para ejemplos, para no parecerse a cuentas reales. Con autenticación real, estos usuarios se crean en el servidor y la contraseña deja de estar documentada aquí.
+
 Hoy todo el contenido es público. Las insignias Interno y Confidencial muestran el nivel de acceso del perfil, pero esos niveles aún no tienen documentos.
 
 ## Arquitectura: Context + Custom Hooks
