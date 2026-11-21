@@ -4,6 +4,8 @@ import { InsigniaVigencia } from "@/components/comun/InsigniaVigencia"
 import { cn } from "@/lib/utils"
 import { useFragmento } from "@/hooks/useDocumentos"
 import { mejorLinea } from "@/lib/citas"
+import { celdasDe } from "@/lib/textoPdf"
+import { Valor } from "@/components/visor/TextoPdf"
 import type { Cita } from "@/types/api"
 
 /** Avisos de vigencia que pone el código: van antes de las fuentes y no se pueden ocultar. */
@@ -112,5 +114,17 @@ function Extracto({ fragmento, referencia }: { fragmento: string; referencia: st
   const i = mejorLinea(lineas, referencia)
   const texto = i >= 0 ? lineas[i] : lineas[0]
   if (!texto) return <span aria-hidden className="mt-1 block h-4" />
+  // Fila de tarifa o de tasas («Concepto $ 3.200 + IVA 1-oct-26»): concepto y valor separados.
+  const [concepto, valor] = celdasDe(texto)
+  if (valor) {
+    return (
+      <span className="mt-0.5 flex min-w-0 gap-2 text-[0.8125rem] text-muted-foreground">
+        <span className="truncate">{concepto}</span>
+        <span className="shrink-0 cifras">
+          <Valor celda={valor} />
+        </span>
+      </span>
+    )
+  }
   return <span className="mt-0.5 line-clamp-1 text-[0.8125rem] text-muted-foreground">{texto}</span>
 }

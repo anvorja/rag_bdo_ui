@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import Markdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import { ExternalLinkIcon, FileTextIcon, RotateCwIcon, TriangleAlertIcon, XIcon } from "lucide-react"
@@ -14,6 +14,8 @@ import { useVisor } from "@/hooks/useVisor"
 import { ETIQUETA_VIGENCIA, fechaLarga, humanizar, marcasDePagina, tonoVigencia } from "@/lib/formato"
 import { cn } from "@/lib/utils"
 import { mejorLinea } from "@/lib/citas"
+import { bloquesPdf, buscarDatoCitado, ubicarFragmento, type DatoCitado } from "@/lib/textoPdf"
+import { nombresColumnas, TextoPdf, Valor } from "./TextoPdf"
 import type { ObjetivoVisor } from "@/contexts/VisorContext"
 
 const ANCHO_ACOPLADO = "(min-width: 1280px)"
@@ -37,7 +39,7 @@ export function VisorDocumento() {
 
   return (
     <Sheet open={!!objetivo} onOpenChange={(abierto) => !abierto && cerrar()}>
-      <SheetContent side="right" showCloseButton={false} className="w-full gap-0 p-0 sm:max-w-xl">
+      <SheetContent side="right" showCloseButton={false} className="w-full gap-0 p-0 data-[side=right]:w-full sm:max-w-xl data-[side=right]:sm:max-w-xl">
         {objetivo && <ContenidoVisor key={`${objetivo.docId}|${objetivo.fragmento}`} objetivo={objetivo} alCerrar={cerrar} enPanel />}
       </SheetContent>
     </Sheet>
@@ -57,8 +59,42 @@ function ContenidoVisor({
   const doc = useDocumento(objetivo.docId)
   const frag = useFragmento(objetivo.fragmento ?? null)
   const [pestana, setPestana] = useState(objetivo.fragmento ? "fragmento" : "documento")
+  const [irAlDato, setIrAlDato] = useState(false)
+  const desplazable = useRef<HTMLDivElement>(null)
   const d = doc.datos
   const Titulo = enPanel ? SheetTitle : "h2"
+
+  // Los PDF llegan como texto con disposición de columnas: se convierten en bloques con estructura.
+  const esPdf = !!d?.tipo_contenido.startsWith("pdf")
+  const bloquesDoc = useMemo(() => (d && esPdf ? bloquesPdf(d.texto) : null), [d, esPdf])
+  const textoFragmento = frag.datos?.texto
+  const vistaFragmento = useMemo(() => {
+    if (!d || !esPdf || !textoFragmento) return null
+    const rango = ubicarFragmento(d.texto, textoFragmento)
+    const bloques = rango ? bloquesPdf(d.texto, rango) : bloquesPdf(textoFragmento)
+    return { bloques, dato: buscarDatoCitado(bloques, objetivo.referencia ?? ""), enDocumento: !!rango }
+  }, [d, esPdf, textoFragmento, objetivo.referencia])
+  const marcadasDoc = vistaFragmento?.enDocumento ? vistaFragmento.dato?.lineas : undefined
+
+  // «Ver en el documento»: abre la pestaña y lleva la fila citada al centro del visor.
+  useEffect(() => {
+    if (!irAlDato || pestana !== "documento") return
+    const marco = requestAnimationFrame(() => {
+      const contenedor = desplazable.current
+      const destino = contenedor?.querySelector("#cita-marcada")
+      if (contenedor && destino) {
+        const arriba = destino.getBoundingClientRect().top - contenedor.getBoundingClientRect().top + contenedor.scrollTop
+        contenedor.scrollTo({ top: arriba - contenedor.clientHeight / 3 })
+      }
+      setIrAlDato(false)
+    })
+    return () => cancelAnimationFrame(marco)
+  }, [irAlDato, pestana])
+
+  const verEnDocumento = () => {
+    setPestana("documento")
+    setIrAlDato(!!marcadasDoc)
+  }
 
   return (
     <div className="flex min-h-0 flex-1 flex-col">
@@ -106,20 +142,25 @@ function ContenidoVisor({
         <Tabs value={pestana} onValueChange={setPestana} className="flex min-h-0 flex-1 flex-col gap-0">
           <div className="flex items-center gap-2 border-b px-5 py-2">
             <TabsList className="h-8">
-              {objetivo.fragmento && <TabsTrigger value="fragmento">Fragmento citado</TabsTrigger>}
+              {objetivo.fragmento && (
+                <TabsTrigger value="fragmento">
+                  <span className="sm:hidden">Cita</span>
+                  <span className="hidden sm:inline">Fragmento citado</span>
+                </TabsTrigger>
+              )}
               <TabsTrigger value="documento">Documento</TabsTrigger>
               <TabsTrigger value="versiones">
                 Versiones{d.versiones.length > 1 ? ` (${d.versiones.length})` : ""}
               </TabsTrigger>
             </TabsList>
             <Button asChild variant="ghost" size="sm" className="ml-auto text-muted-foreground">
-              <a href={d.url} target="_blank" rel="noreferrer">
-                Original <ExternalLinkIcon aria-hidden />
+              <a href={d.url} target="_blank" rel="noreferrer" aria-label="Abrir el documento original en una pestaña nueva">
+                <span className="hidden sm:inline">Original</span> <ExternalLinkIcon aria-hidden />
               </a>
             </Button>
           </div>
 
-          <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain">
+          <div ref={desplazable} className="min-h-0 flex-1 overflow-y-auto overscroll-contain">
             {d.aviso && tonoVigencia(d.estado_vigencia) !== "ok" && (
               <p className="mx-5 mt-4 flex gap-2 rounded-lg border border-aviso-borde bg-aviso px-3 py-2 text-[0.8125rem] leading-relaxed text-aviso-foreground">
                 <TriangleAlertIcon aria-hidden className="mt-0.5 size-4 shrink-0" />
@@ -129,7 +170,23 @@ function ContenidoVisor({
 
             {objetivo.fragmento && (
               <TabsContent value="fragmento" className="px-5 py-4">
-                {frag.datos ? (
+                {frag.datos && vistaFragmento ? (
+                  <>
+                    {vistaFragmento.dato && <TarjetaDato dato={vistaFragmento.dato} />}
+                    <p className={cn("mb-3 text-xs text-muted-foreground", vistaFragmento.dato && "mt-6")}>
+                      {[
+                        "Contexto en el documento",
+                        frag.datos.pagina != null && `página ${frag.datos.pagina}`,
+                      ]
+                        .filter(Boolean)
+                        .join(" · ")}
+                    </p>
+                    <TextoPdf bloques={vistaFragmento.bloques} marcadas={vistaFragmento.dato?.lineas} />
+                    <Button variant="link" size="sm" className="mt-3 px-0" onClick={verEnDocumento}>
+                      {marcadasDoc ? "Ver el dato en el documento completo" : "Ver el documento completo"}
+                    </Button>
+                  </>
+                ) : frag.datos ? (
                   <>
                     <p className="text-xs text-muted-foreground">
                       {[
@@ -164,9 +221,13 @@ function ContenidoVisor({
                 {d.paginas != null && <Dato termino="Páginas" valor={String(d.paginas)} />}
                 {d.fecha_extraccion && <Dato termino="Capturado" valor={fechaLarga(d.fecha_extraccion)} />}
               </dl>
-              <article className="documento">
-                <Markdown remarkPlugins={[remarkGfm]}>{marcasDePagina(d.texto)}</Markdown>
-              </article>
+              {bloquesDoc ? (
+                <TextoPdf bloques={bloquesDoc} marcadas={marcadasDoc} />
+              ) : (
+                <article className="documento">
+                  <Markdown remarkPlugins={[remarkGfm]}>{sinSangriaDeCodigo(marcasDePagina(d.texto))}</Markdown>
+                </article>
+              )}
             </TabsContent>
 
             <TabsContent value="versiones" className="px-5 py-4">
@@ -211,6 +272,52 @@ function ContenidoVisor({
         </div>
       )}
     </div>
+  )
+}
+
+/**
+ * En el texto de páginas web y documentos convertidos, la sangría de 4 espacios no es código:
+ * sin esto, Markdown la muestra como bloque de código en fuente monoespaciada.
+ */
+function sinSangriaDeCodigo(texto: string) {
+  let enBloque = false
+  return texto
+    .split("\n")
+    .map((l) => {
+      if (/^\s*(```|~~~)/.test(l)) enBloque = !enBloque
+      return enBloque ? l : l.replace(/^(?: {4,}|\t+)(?=\S)/, "")
+    })
+    .join("\n")
+}
+
+const FECHA_CORTA = /^\d{1,2}-[a-zé]{3}-\d{2}$/i
+
+/** El dato que respalda la respuesta, arriba y legible: concepto, valor y fecha con su columna. */
+function TarjetaDato({ dato }: { dato: DatoCitado }) {
+  const nombres = dato.tabla ? nombresColumnas(dato.tabla) : []
+  return (
+    <section aria-label="Dato que respalda la respuesta" className="rounded-xl border border-primary/25 bg-primary/[0.06] p-4">
+      <p className="text-[0.6875rem] font-semibold tracking-wider text-primary uppercase">Dato que respalda la respuesta</p>
+      {dato.fila ? (
+        <>
+          <p className="mt-1.5 leading-snug font-medium text-pretty">{dato.fila.celdas[0]}</p>
+          <dl className="mt-3 flex flex-wrap gap-x-6 gap-y-2">
+            {dato.fila.celdas.slice(1).map((c, i) =>
+              c.trim() ? (
+                <div key={i}>
+                  <dt className="text-[0.6875rem] text-muted-foreground">{nombres[i + 1] || "Valor"}</dt>
+                  <dd className={cn("cifras", FECHA_CORTA.test(c.trim()) ? "text-[0.875rem] text-muted-foreground" : "text-[1.125rem]")}>
+                    <Valor celda={c} grande />
+                  </dd>
+                </div>
+              ) : null
+            )}
+          </dl>
+        </>
+      ) : (
+        <blockquote className="mt-1.5 text-[0.875rem] leading-relaxed text-pretty">{dato.texto}</blockquote>
+      )}
+    </section>
   )
 }
 

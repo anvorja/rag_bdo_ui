@@ -61,7 +61,7 @@ export function AppShell() {
       <div className="flex h-dvh min-w-0 flex-col overflow-clip lg:pl-64">
         <Encabezado alAbrirMenu={() => setMenu(true)} acciones={accionChat} />
         <div className="flex min-h-0 min-w-0 flex-1">
-          <main id="contenido" tabIndex={-1} className="min-w-0 flex-1 overflow-y-auto overscroll-contain outline-none">
+          <main id="contenido" tabIndex={-1} className="relative min-w-0 flex-1 overflow-y-auto overscroll-contain outline-none">
             <LimiteError zona="esta página">
               <Outlet />
             </LimiteError>
