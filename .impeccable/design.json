@@ -1,0 +1,640 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-20T00:00:00Z",
+  "title": "Design System: Asistente RAG del banco (panel piloto)",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Verde institucional",
+        "canonical": "oklch(0.38 0.062 158)",
+        "tonalRamp": [
+          "oklch(0.150 0.062 158)",
+          "oklch(0.264 0.062 158)",
+          "oklch(0.379 0.062 158)",
+          "oklch(0.493 0.062 158)",
+          "oklch(0.607 0.062 158)",
+          "oklch(0.721 0.062 158)",
+          "oklch(0.836 0.062 158)",
+          "oklch(0.950 0.062 158)"
+        ]
+      },
+      "primary-foreground": {
+        "role": "neutral",
+        "displayName": "Hueso sobre verde",
+        "canonical": "oklch(0.975 0.008 95)",
+        "tonalRamp": [
+          "oklch(0.150 0.008 95)",
+          "oklch(0.264 0.008 95)",
+          "oklch(0.379 0.008 95)",
+          "oklch(0.493 0.008 95)",
+          "oklch(0.607 0.008 95)",
+          "oklch(0.721 0.008 95)",
+          "oklch(0.836 0.008 95)",
+          "oklch(0.950 0.008 95)"
+        ]
+      },
+      "background": {
+        "role": "neutral",
+        "displayName": "Hueso de trabajo",
+        "canonical": "oklch(0.975 0.012 85)",
+        "tonalRamp": [
+          "oklch(0.150 0.012 85)",
+          "oklch(0.264 0.012 85)",
+          "oklch(0.379 0.012 85)",
+          "oklch(0.493 0.012 85)",
+          "oklch(0.607 0.012 85)",
+          "oklch(0.721 0.012 85)",
+          "oklch(0.836 0.012 85)",
+          "oklch(0.950 0.012 85)"
+        ]
+      },
+      "foreground": {
+        "role": "neutral",
+        "displayName": "Tinta verde",
+        "canonical": "oklch(0.22 0.022 158)",
+        "tonalRamp": [
+          "oklch(0.150 0.022 158)",
+          "oklch(0.264 0.022 158)",
+          "oklch(0.379 0.022 158)",
+          "oklch(0.493 0.022 158)",
+          "oklch(0.607 0.022 158)",
+          "oklch(0.721 0.022 158)",
+          "oklch(0.836 0.022 158)",
+          "oklch(0.950 0.022 158)"
+        ]
+      },
+      "card": {
+        "role": "neutral",
+        "displayName": "Papel",
+        "canonical": "oklch(0.99 0.008 85)",
+        "tonalRamp": [
+          "oklch(0.150 0.008 85)",
+          "oklch(0.264 0.008 85)",
+          "oklch(0.379 0.008 85)",
+          "oklch(0.493 0.008 85)",
+          "oklch(0.607 0.008 85)",
+          "oklch(0.721 0.008 85)",
+          "oklch(0.836 0.008 85)",
+          "oklch(0.950 0.008 85)"
+        ]
+      },
+      "secondary": {
+        "role": "neutral",
+        "displayName": "Verde niebla",
+        "canonical": "oklch(0.945 0.012 150)",
+        "tonalRamp": [
+          "oklch(0.150 0.012 150)",
+          "oklch(0.264 0.012 150)",
+          "oklch(0.379 0.012 150)",
+          "oklch(0.493 0.012 150)",
+          "oklch(0.607 0.012 150)",
+          "oklch(0.721 0.012 150)",
+          "oklch(0.836 0.012 150)",
+          "oklch(0.950 0.012 150)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Hueso hundido",
+        "canonical": "oklch(0.938 0.014 85)",
+        "tonalRamp": [
+          "oklch(0.150 0.014 85)",
+          "oklch(0.264 0.014 85)",
+          "oklch(0.379 0.014 85)",
+          "oklch(0.493 0.014 85)",
+          "oklch(0.607 0.014 85)",
+          "oklch(0.721 0.014 85)",
+          "oklch(0.836 0.014 85)",
+          "oklch(0.950 0.014 85)"
+        ]
+      },
+      "muted-foreground": {
+        "role": "neutral",
+        "displayName": "Tinta suave",
+        "canonical": "oklch(0.47 0.02 155)",
+        "tonalRamp": [
+          "oklch(0.150 0.02 155)",
+          "oklch(0.264 0.02 155)",
+          "oklch(0.379 0.02 155)",
+          "oklch(0.493 0.02 155)",
+          "oklch(0.607 0.02 155)",
+          "oklch(0.721 0.02 155)",
+          "oklch(0.836 0.02 155)",
+          "oklch(0.950 0.02 155)"
+        ]
+      },
+      "accent": {
+        "role": "neutral",
+        "displayName": "Verde niebla de hover",
+        "canonical": "oklch(0.935 0.016 150)",
+        "tonalRamp": [
+          "oklch(0.150 0.016 150)",
+          "oklch(0.264 0.016 150)",
+          "oklch(0.379 0.016 150)",
+          "oklch(0.493 0.016 150)",
+          "oklch(0.607 0.016 150)",
+          "oklch(0.721 0.016 150)",
+          "oklch(0.836 0.016 150)",
+          "oklch(0.950 0.016 150)"
+        ]
+      },
+      "border": {
+        "role": "neutral",
+        "displayName": "Línea de hueso",
+        "canonical": "oklch(0.89 0.015 85)",
+        "tonalRamp": [
+          "oklch(0.150 0.015 85)",
+          "oklch(0.264 0.015 85)",
+          "oklch(0.379 0.015 85)",
+          "oklch(0.493 0.015 85)",
+          "oklch(0.607 0.015 85)",
+          "oklch(0.721 0.015 85)",
+          "oklch(0.836 0.015 85)",
+          "oklch(0.950 0.015 85)"
+        ]
+      },
+      "input": {
+        "role": "neutral",
+        "displayName": "Línea de campo",
+        "canonical": "oklch(0.86 0.016 85)",
+        "tonalRamp": [
+          "oklch(0.150 0.016 85)",
+          "oklch(0.264 0.016 85)",
+          "oklch(0.379 0.016 85)",
+          "oklch(0.493 0.016 85)",
+          "oklch(0.607 0.016 85)",
+          "oklch(0.721 0.016 85)",
+          "oklch(0.836 0.016 85)",
+          "oklch(0.950 0.016 85)"
+        ]
+      },
+      "ring": {
+        "role": "primary",
+        "displayName": "Verde de foco",
+        "canonical": "oklch(0.52 0.08 158)",
+        "tonalRamp": [
+          "oklch(0.150 0.08 158)",
+          "oklch(0.264 0.08 158)",
+          "oklch(0.379 0.08 158)",
+          "oklch(0.493 0.08 158)",
+          "oklch(0.607 0.08 158)",
+          "oklch(0.721 0.08 158)",
+          "oklch(0.836 0.08 158)",
+          "oklch(0.950 0.08 158)"
+        ]
+      },
+      "destructive": {
+        "role": "tertiary",
+        "displayName": "Rojo terroso",
+        "canonical": "oklch(0.53 0.16 30)",
+        "tonalRamp": [
+          "oklch(0.150 0.16 30)",
+          "oklch(0.264 0.16 30)",
+          "oklch(0.379 0.16 30)",
+          "oklch(0.493 0.16 30)",
+          "oklch(0.607 0.16 30)",
+          "oklch(0.721 0.16 30)",
+          "oklch(0.836 0.16 30)",
+          "oklch(0.950 0.16 30)"
+        ]
+      },
+      "sidebar": {
+        "role": "neutral",
+        "displayName": "Verde bosque",
+        "canonical": "oklch(0.245 0.036 160)",
+        "tonalRamp": [
+          "oklch(0.150 0.036 160)",
+          "oklch(0.264 0.036 160)",
+          "oklch(0.379 0.036 160)",
+          "oklch(0.493 0.036 160)",
+          "oklch(0.607 0.036 160)",
+          "oklch(0.721 0.036 160)",
+          "oklch(0.836 0.036 160)",
+          "oklch(0.950 0.036 160)"
+        ]
+      },
+      "sidebar-foreground": {
+        "role": "neutral",
+        "displayName": "Hueso sobre bosque",
+        "canonical": "oklch(0.93 0.012 95)",
+        "tonalRamp": [
+          "oklch(0.150 0.012 95)",
+          "oklch(0.264 0.012 95)",
+          "oklch(0.379 0.012 95)",
+          "oklch(0.493 0.012 95)",
+          "oklch(0.607 0.012 95)",
+          "oklch(0.721 0.012 95)",
+          "oklch(0.836 0.012 95)",
+          "oklch(0.950 0.012 95)"
+        ]
+      },
+      "sidebar-primary": {
+        "role": "secondary",
+        "displayName": "Ámbar de marca",
+        "canonical": "oklch(0.8 0.115 78)",
+        "tonalRamp": [
+          "oklch(0.150 0.115 78)",
+          "oklch(0.264 0.115 78)",
+          "oklch(0.379 0.115 78)",
+          "oklch(0.493 0.115 78)",
+          "oklch(0.607 0.115 78)",
+          "oklch(0.721 0.115 78)",
+          "oklch(0.836 0.115 78)",
+          "oklch(0.950 0.115 78)"
+        ]
+      },
+      "sidebar-accent": {
+        "role": "neutral",
+        "displayName": "Bosque claro",
+        "canonical": "oklch(0.31 0.042 158)",
+        "tonalRamp": [
+          "oklch(0.150 0.042 158)",
+          "oklch(0.264 0.042 158)",
+          "oklch(0.379 0.042 158)",
+          "oklch(0.493 0.042 158)",
+          "oklch(0.607 0.042 158)",
+          "oklch(0.721 0.042 158)",
+          "oklch(0.836 0.042 158)",
+          "oklch(0.950 0.042 158)"
+        ]
+      },
+      "sidebar-muted": {
+        "role": "neutral",
+        "displayName": "Salvia apagada",
+        "canonical": "oklch(0.74 0.02 150)",
+        "tonalRamp": [
+          "oklch(0.150 0.02 150)",
+          "oklch(0.264 0.02 150)",
+          "oklch(0.379 0.02 150)",
+          "oklch(0.493 0.02 150)",
+          "oklch(0.607 0.02 150)",
+          "oklch(0.721 0.02 150)",
+          "oklch(0.836 0.02 150)",
+          "oklch(0.950 0.02 150)"
+        ]
+      },
+      "aviso": {
+        "role": "secondary",
+        "displayName": "Ámbar de atención (fondo)",
+        "canonical": "oklch(0.955 0.035 85)",
+        "tonalRamp": [
+          "oklch(0.150 0.035 85)",
+          "oklch(0.264 0.035 85)",
+          "oklch(0.379 0.035 85)",
+          "oklch(0.493 0.035 85)",
+          "oklch(0.607 0.035 85)",
+          "oklch(0.721 0.035 85)",
+          "oklch(0.836 0.035 85)",
+          "oklch(0.950 0.035 85)"
+        ]
+      },
+      "aviso-foreground": {
+        "role": "secondary",
+        "displayName": "Ámbar de atención (texto)",
+        "canonical": "oklch(0.43 0.085 62)",
+        "tonalRamp": [
+          "oklch(0.150 0.085 62)",
+          "oklch(0.264 0.085 62)",
+          "oklch(0.379 0.085 62)",
+          "oklch(0.493 0.085 62)",
+          "oklch(0.607 0.085 62)",
+          "oklch(0.721 0.085 62)",
+          "oklch(0.836 0.085 62)",
+          "oklch(0.950 0.085 62)"
+        ]
+      },
+      "aviso-borde": {
+        "role": "secondary",
+        "displayName": "Ámbar de atención (borde)",
+        "canonical": "oklch(0.86 0.07 80)",
+        "tonalRamp": [
+          "oklch(0.150 0.07 80)",
+          "oklch(0.264 0.07 80)",
+          "oklch(0.379 0.07 80)",
+          "oklch(0.493 0.07 80)",
+          "oklch(0.607 0.07 80)",
+          "oklch(0.721 0.07 80)",
+          "oklch(0.836 0.07 80)",
+          "oklch(0.950 0.07 80)"
+        ]
+      },
+      "publico": {
+        "role": "neutral",
+        "displayName": "Nivel Público",
+        "canonical": "oklch(0.93 0.04 150)",
+        "tonalRamp": [
+          "oklch(0.150 0.04 150)",
+          "oklch(0.264 0.04 150)",
+          "oklch(0.379 0.04 150)",
+          "oklch(0.493 0.04 150)",
+          "oklch(0.607 0.04 150)",
+          "oklch(0.721 0.04 150)",
+          "oklch(0.836 0.04 150)",
+          "oklch(0.950 0.04 150)"
+        ]
+      },
+      "publico-foreground": {
+        "role": "neutral",
+        "displayName": "Nivel Público (texto)",
+        "canonical": "oklch(0.38 0.08 152)",
+        "tonalRamp": [
+          "oklch(0.150 0.08 152)",
+          "oklch(0.264 0.08 152)",
+          "oklch(0.379 0.08 152)",
+          "oklch(0.493 0.08 152)",
+          "oklch(0.607 0.08 152)",
+          "oklch(0.721 0.08 152)",
+          "oklch(0.836 0.08 152)",
+          "oklch(0.950 0.08 152)"
+        ]
+      },
+      "interno": {
+        "role": "neutral",
+        "displayName": "Nivel Interno",
+        "canonical": "oklch(0.94 0.05 82)",
+        "tonalRamp": [
+          "oklch(0.150 0.05 82)",
+          "oklch(0.264 0.05 82)",
+          "oklch(0.379 0.05 82)",
+          "oklch(0.493 0.05 82)",
+          "oklch(0.607 0.05 82)",
+          "oklch(0.721 0.05 82)",
+          "oklch(0.836 0.05 82)",
+          "oklch(0.950 0.05 82)"
+        ]
+      },
+      "interno-foreground": {
+        "role": "neutral",
+        "displayName": "Nivel Interno (texto)",
+        "canonical": "oklch(0.44 0.09 62)",
+        "tonalRamp": [
+          "oklch(0.150 0.09 62)",
+          "oklch(0.264 0.09 62)",
+          "oklch(0.379 0.09 62)",
+          "oklch(0.493 0.09 62)",
+          "oklch(0.607 0.09 62)",
+          "oklch(0.721 0.09 62)",
+          "oklch(0.836 0.09 62)",
+          "oklch(0.950 0.09 62)"
+        ]
+      },
+      "confidencial": {
+        "role": "tertiary",
+        "displayName": "Nivel Confidencial",
+        "canonical": "oklch(0.94 0.03 25)",
+        "tonalRamp": [
+          "oklch(0.150 0.03 25)",
+          "oklch(0.264 0.03 25)",
+          "oklch(0.379 0.03 25)",
+          "oklch(0.493 0.03 25)",
+          "oklch(0.607 0.03 25)",
+          "oklch(0.721 0.03 25)",
+          "oklch(0.836 0.03 25)",
+          "oklch(0.950 0.03 25)"
+        ]
+      },
+      "confidencial-foreground": {
+        "role": "tertiary",
+        "displayName": "Nivel Confidencial (texto)",
+        "canonical": "oklch(0.5 0.15 28)",
+        "tonalRamp": [
+          "oklch(0.150 0.15 28)",
+          "oklch(0.264 0.15 28)",
+          "oklch(0.379 0.15 28)",
+          "oklch(0.493 0.15 28)",
+          "oklch(0.607 0.15 28)",
+          "oklch(0.721 0.15 28)",
+          "oklch(0.836 0.15 28)",
+          "oklch(0.950 0.15 28)"
+        ]
+      },
+      "exito": {
+        "role": "neutral",
+        "displayName": "Verde de éxito",
+        "canonical": "oklch(0.5 0.1 155)",
+        "tonalRamp": [
+          "oklch(0.150 0.1 155)",
+          "oklch(0.264 0.1 155)",
+          "oklch(0.379 0.1 155)",
+          "oklch(0.493 0.1 155)",
+          "oklch(0.607 0.1 155)",
+          "oklch(0.721 0.1 155)",
+          "oklch(0.836 0.1 155)",
+          "oklch(0.950 0.1 155)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Solo la frase del panel de ingreso."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Saludo del estado vacío y título del formulario de ingreso."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Título de página en la cabecera; títulos de documento en el visor."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Texto de la respuesta, burbuja, compositor y consentimiento."
+      },
+      "body-sm": {
+        "displayName": "Body pequeño",
+        "purpose": "Filas de fuente, avisos, extractos, ayudas y errores."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Encabezado del bloque Fuentes y rótulo de marca; nunca antetítulo."
+      },
+      "mono": {
+        "displayName": "Mono",
+        "purpose": "Doc. N, número de cita, contadores y trazas, con numerales tabulares."
+      }
+    },
+    "shadows": [
+      {
+        "name": "papel-apoyado",
+        "value": "0 1px 2px oklch(0.3 0.03 158 / 0.05)",
+        "purpose": "Tarjetas de respuesta y consentimiento (0.06 en el compositor)."
+      },
+      {
+        "name": "seleccion-elevada",
+        "value": "0 6px 16px -8px oklch(0.3 0.06 158 / 0.6)",
+        "purpose": "Solo la tarjeta de perfil activa en el ingreso."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-salida",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Entrada de turnos (opacidad y 4px), visor desde la derecha, sugerencias y perfil."
+      },
+      {
+        "name": "duracion-estado",
+        "value": "150ms",
+        "purpose": "Hover, foco y resaltado cita-fuente."
+      },
+      {
+        "name": "duracion-entrada",
+        "value": "200ms",
+        "purpose": "Entrada de turnos y del visor acoplado."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "0.01ms",
+        "purpose": "Todas las animaciones y transiciones con prefers-reduced-motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      },
+      {
+        "name": "xl",
+        "value": "1280px"
+      }
+    ],
+    "surfaces": {
+      "login-panel": "linear-gradient(160deg, #16301f 0%, #1a3328 35%, #2c542e 100%)"
+    }
+  },
+  "components": [
+    {
+      "name": "Botón primario",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Acción principal: Enviar, Ingresar, Acepto y continuar.",
+      "html": "<button class=\"ds-btn-primary\">Acepto y continuar</button>",
+      "css": ".ds-btn-primary{background:var(--primary);color:var(--primary-foreground);font-family:'Manrope Variable',ui-sans-serif,system-ui,sans-serif;font-size:14px;font-weight:600;height:40px;padding:0 16px;border:1px solid transparent;border-radius:12px;cursor:pointer;transition:background-color .15s,transform .15s}.ds-btn-primary:hover{background:color-mix(in oklch,var(--primary) 80%,transparent)}.ds-btn-primary:focus-visible{outline:none;box-shadow:0 0 0 3px color-mix(in oklch,var(--ring) 50%,transparent)}.ds-btn-primary:active{transform:translateY(1px)}"
+    },
+    {
+      "name": "Botón contorno",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Acción secundaria: Nueva consulta, Reintentar, Guardar comentario.",
+      "html": "<button class=\"ds-btn-outline\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7\"/><path d=\"M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z\"/></svg>Nueva consulta</button>",
+      "css": ".ds-btn-outline{display:inline-flex;align-items:center;gap:6px;background:var(--card);color:var(--foreground);font-family:'Manrope Variable',ui-sans-serif,system-ui,sans-serif;font-size:13px;font-weight:500;height:32px;padding:0 10px;border:1px solid var(--border);border-radius:12px;cursor:pointer;transition:background-color .15s}.ds-btn-outline:hover{background:var(--muted)}.ds-btn-outline:focus-visible{outline:none;border-color:var(--ring);box-shadow:0 0 0 3px color-mix(in oklch,var(--ring) 50%,transparent)}"
+    },
+    {
+      "name": "Compositor",
+      "kind": "input",
+      "refersTo": "composer",
+      "description": "Campo de pregunta anclado abajo con el botón Enviar a contraste pleno.",
+      "html": "<form class=\"ds-composer\"><div class=\"ds-composer-field\"><textarea rows=\"1\" placeholder=\"Escribe tu pregunta…\"></textarea></div><button type=\"button\" class=\"ds-composer-send\">Enviar</button></form>",
+      "css": ".ds-composer{display:flex;align-items:flex-end;gap:8px;max-width:760px;font-family:'Manrope Variable',ui-sans-serif,system-ui,sans-serif}.ds-composer-field{flex:1;background:var(--card);border:1px solid var(--border);border-radius:16.8px;box-shadow:0 1px 2px oklch(0.3 0.03 158 / 0.06);transition:border-color .15s,box-shadow .15s}.ds-composer-field:focus-within{border-color:var(--ring);box-shadow:0 0 0 3px color-mix(in oklch,var(--ring) 25%,transparent)}.ds-composer-field textarea{display:block;width:100%;min-height:48px;box-sizing:border-box;resize:none;border:0;background:transparent;padding:12px 16px;font:inherit;font-size:15px;line-height:1.625;color:var(--foreground);outline:none}.ds-composer-field textarea::placeholder{color:var(--muted-foreground)}.ds-composer-send{height:48px;padding:0 20px;border:0;border-radius:16.8px;background:var(--primary);color:var(--primary-foreground);font:inherit;font-size:15px;font-weight:600;cursor:pointer}.ds-composer-send:hover{background:color-mix(in oklch,var(--primary) 80%,transparent)}.ds-composer-send:focus-visible{outline:none;box-shadow:0 0 0 3px color-mix(in oklch,var(--ring) 50%,transparent)}"
+    },
+    {
+      "name": "Navegación lateral",
+      "kind": "nav",
+      "refersTo": "nav-item-active",
+      "description": "Barra lateral verde bosque con marca, ítems por perfil y sesión al pie.",
+      "html": "<nav class=\"ds-nav\"><div class=\"ds-nav-brand\">Banco de Occidente<span>Asistente RAG</span></div><a class=\"ds-nav-item is-active\" href=\"#\">Consultar</a><a class=\"ds-nav-item\" href=\"#\">Base de conocimiento</a></nav>",
+      "css": ".ds-nav{display:grid;gap:4px;width:224px;padding:24px 16px;background:var(--sidebar);color:var(--sidebar-foreground);font-family:'Manrope Variable',ui-sans-serif,system-ui,sans-serif}.ds-nav-brand{font-family:'Source Serif 4 Variable',ui-serif,Georgia,serif;font-size:22px;font-weight:500;letter-spacing:-0.025em;line-height:1;padding:0 8px 36px}.ds-nav-brand span{display:block;margin-top:6px;font-family:'Manrope Variable',ui-sans-serif,sans-serif;font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--sidebar-primary)}.ds-nav-item{display:flex;align-items:center;height:40px;padding:0 12px;border-radius:12px;font-size:14px;font-weight:500;color:color-mix(in oklch,var(--sidebar-foreground) 80%,transparent);text-decoration:none;transition:background-color .15s,color .15s}.ds-nav-item:hover{background:color-mix(in oklch,var(--sidebar-accent) 60%,transparent);color:var(--sidebar-accent-foreground)}.ds-nav-item.is-active{background:var(--sidebar-accent);color:var(--sidebar-accent-foreground)}.ds-nav-item:focus-visible{outline:none;box-shadow:0 0 0 2px var(--sidebar-ring)}"
+    },
+    {
+      "name": "Insignias de acceso",
+      "kind": "chip",
+      "refersTo": "badge-publico",
+      "description": "Píldoras de nivel de acceso en la cabecera y en cada fuente.",
+      "html": "<div class=\"ds-badges\"><span class=\"ds-badge ds-badge-publico\">Público</span><span class=\"ds-badge ds-badge-interno\">Interno</span><span class=\"ds-badge ds-badge-confidencial\">Confidencial</span></div>",
+      "css": ".ds-badges{display:flex;gap:6px;font-family:'Manrope Variable',ui-sans-serif,system-ui,sans-serif}.ds-badge{display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:9999px;font-size:11px;font-weight:600}.ds-badge-publico{background:var(--publico);color:var(--publico-foreground)}.ds-badge-interno{background:var(--interno);color:var(--interno-foreground)}.ds-badge-confidencial{background:var(--confidencial);color:var(--confidencial-foreground)}"
+    },
+    {
+      "name": "Burbuja del usuario",
+      "kind": "custom",
+      "refersTo": "user-bubble",
+      "description": "La pregunta del usuario, alineada a la derecha en verde institucional.",
+      "html": "<p class=\"ds-bubble\">¿Cuánto cuesta un retiro en corresponsal bancario?</p>",
+      "css": ".ds-bubble{display:inline-block;max-width:75%;margin:0;padding:10px 16px;background:var(--primary);color:var(--primary-foreground);border-radius:21.6px 21.6px 9.6px 21.6px;font-family:'Manrope Variable',ui-sans-serif,system-ui,sans-serif;font-size:15px;line-height:1.625}"
+    },
+    {
+      "name": "Respuesta con comprobante",
+      "kind": "card",
+      "refersTo": "answer-card",
+      "description": "Tarjeta de respuesta: aviso de vigencia, texto con marcas [n] y bloque Fuentes con la línea que respalda cada dato.",
+      "html": "<article class=\"ds-answer\"><p class=\"ds-vig\">Vigente hasta el 31 de diciembre de 2026.</p><p class=\"ds-text\">El retiro en corresponsal tiene una comisión de $3.200 + IVA <button class=\"ds-mark is-active\">1</button> según las tarifas vigentes <button class=\"ds-mark\">2</button>.</p><h3 class=\"ds-label\">Fuentes</h3><button class=\"ds-source is-active\"><span class=\"ds-num\">1</span><span><strong>Tarifas persona</strong><span class=\"ds-line\">Retiro corresponsal Bancario $ 3.200 + IVA</span><span class=\"ds-meta\">Vigente hasta el 31 de diciembre de 2026 · Pág. 8</span></span></button></article>",
+      "css": ".ds-answer{display:grid;gap:16px;max-width:640px;padding:16px 20px;background:var(--card);color:var(--foreground);border:1px solid var(--border);border-radius:21.6px;box-shadow:0 1px 2px oklch(0.3 0.03 158 / 0.05);font-family:'Manrope Variable',ui-sans-serif,system-ui,sans-serif}.ds-vig{margin:0;padding:10px 14px;border-radius:12px;background:color-mix(in oklch,var(--foreground) 4%,transparent);color:var(--muted-foreground);font-size:13px}.ds-text{margin:0;font-size:15px;line-height:1.7;font-variant-numeric:tabular-nums}.ds-mark{display:inline-flex;align-items:center;justify-content:center;height:1.15rem;min-width:1.15rem;padding:0 4px;margin:0 2px;border:0;border-radius:.3rem;background:var(--secondary);color:var(--secondary-foreground);font-family:'Geist Mono Variable',ui-monospace,monospace;font-size:11px;font-weight:600;cursor:pointer;transition:background-color .15s,color .15s}.ds-mark:hover,.ds-mark.is-active{background:var(--primary);color:var(--primary-foreground)}.ds-mark:focus-visible{outline:none;box-shadow:0 0 0 2px color-mix(in oklch,var(--ring) 60%,transparent)}.ds-label{margin:0 0 -8px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted-foreground)}.ds-source{display:grid;grid-template-columns:1.5rem 1fr;gap:10px;width:100%;padding:8px 10px;text-align:left;border:0;border-radius:12px;background:color-mix(in oklch,var(--foreground) 4%,transparent);color:inherit;font:inherit;font-size:13px;cursor:pointer;transition:background-color .15s,box-shadow .15s}.ds-source:hover{background:color-mix(in oklch,var(--foreground) 7%,transparent)}.ds-source.is-active{background:color-mix(in oklch,var(--foreground) 8%,transparent);box-shadow:0 0 0 1px color-mix(in oklch,var(--primary) 35%,transparent)}.ds-num{display:flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:9.6px;background:var(--card);font-family:'Geist Mono Variable',ui-monospace,monospace;font-size:12px;font-weight:600}.ds-source.is-active .ds-num{background:var(--primary);color:var(--primary-foreground)}.ds-line,.ds-meta{display:block;margin-top:2px;color:var(--muted-foreground)}.ds-meta{font-size:12px}"
+    },
+    {
+      "name": "Aviso de vigencia (atención)",
+      "kind": "custom",
+      "refersTo": "vigencia-notice-attention",
+      "description": "Aviso ámbar solo cuando una fuente está vencida, es histórica o depende de existencias.",
+      "html": "<p class=\"ds-aviso\">La tasa citada corresponde a septiembre de 2026; consulta la publicación vigente.</p>",
+      "css": ".ds-aviso{margin:0;max-width:560px;padding:10px 14px;border:1px solid var(--aviso-borde);border-radius:12px;background:var(--aviso);color:var(--aviso-foreground);font-family:'Manrope Variable',ui-sans-serif,system-ui,sans-serif;font-size:13px;line-height:1.625}"
+    }
+  ],
+  "narrative": {
+    "northStar": "El despacho con comprobante",
+    "overview": "Un despacho bancario sobrio: barra lateral verde bosque casi negra, una superficie de trabajo color hueso cálido y un único verde institucional para actuar y seleccionar. La interfaz no compite con el contenido; su trabajo es que cada respuesta llegue con su comprobante visible (marcas [n], fuentes, vigencia) y que verificar cueste un clic. La fuente, la vigencia y la acción del asistente son ciudadanos de primera clase, no notas al pie plegadas.\n\nLa densidad es de herramienta de trabajo, no de página de marketing: textos de 13 a 15 px, filas compactas, una columna de lectura de 760 px y un visor de documentos que se acopla a la derecha sin cerrar la conversación. La serif aparece poco y siempre con intención (marca, saludo, títulos de página y de documento); el resto es Manrope. Las cifras usan numerales tabulares y los identificadores van en mono.\n\nEl mundo lo fijaron los mockups del usuario; la construcción calentó los fondos hacia el hueso y el verde bosque de esos mockups. Rechazo confirmado: el chat genérico de burbujas grises con fuentes escondidas.",
+    "keyCharacteristics": [
+      "Barra lateral verde bosque profunda frente a superficie hueso cálida; nunca gris neutro.",
+      "Un solo acento verde institucional para acciones, selección, cita activa y burbuja del usuario.",
+      "Ámbar reservado para el rótulo de marca y los estados que piden atención (vigencia vencida, histórica o limitada; servicio con limitaciones).",
+      "Rojo terroso solo para «Confidencial» y errores.",
+      "Plano por defecto: profundidad por capas tonales y bordes finos, sombras de 1-2 px apenas perceptibles.",
+      "Movimiento corto (150-220 ms) con salida exponencial; todo se apaga con prefers-reduced-motion."
+    ],
+    "rules": [
+      {
+        "name": "The One Green Rule",
+        "body": "Toda acción y toda selección usa el mismo verde institucional. No hay un segundo color de acción.",
+        "section": "colors"
+      },
+      {
+        "name": "The Amber Means Read This Rule",
+        "body": "El ámbar no decora: solo el rótulo de marca y lo que exige leer un aviso. Una fuente vigente se muestra en tinta suave con un fondo neutro; si nada está vencido, histórico o limitado, no hay ámbar en la respuesta.",
+        "section": "colors"
+      },
+      {
+        "name": "The Warm Ground Rule",
+        "body": "Los fondos son hueso cálido (tono 85) y verde bosque (tono 160). Ningún gris neutro de tono 0.",
+        "section": "colors"
+      },
+      {
+        "name": "The Serif Is Rare Rule",
+        "body": "La serif solo va en marca, saludo, títulos de página, de formulario y de documento. Botones, listas, insignias y cuerpo son Manrope.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tabular Figures Rule",
+        "body": "Toda cifra que se compare (tarifas, fechas, páginas, recuentos, tablas del documento) usa numerales tabulares.",
+        "section": "typography"
+      },
+      {
+        "name": "The Paper On Bone Rule",
+        "body": "Una superficie se separa por un paso tonal y un borde fino; la sombra, si existe, no pasa de 2 px.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** usar el verde institucional (`primary`) para toda acción y selección, y nada más para eso.",
+      "**Do** mostrar los avisos de vigencia antes del texto de la respuesta; neutros (tinta suave sobre `foreground` al 4 %) cuando todo está vigente y en ámbar con borde solo cuando algo está vencido, es histórico o limitado.",
+      "**Do** poner las cifras en numerales tabulares y los identificadores (Doc. N, número de cita) en Geist Mono.",
+      "**Do** mantener la columna de lectura en 760 px y dejar que solo `<main>` y el visor desplacen.",
+      "**Do** mantener el movimiento entre 150 y 220 ms con la curva `--ease-salida` (cubic-bezier(0.16, 1, 0.3, 1)) y desactivarlo con prefers-reduced-motion.",
+      "**Do** separar superficies por paso tonal y borde de 1 px antes que por sombra."
+    ],
+    "donts": [
+      "**Don't** usar ámbar para decorar, para acciones o para una fuente vigente.",
+      "**Don't** usar rojo terroso fuera de errores y del nivel «Confidencial».",
+      "**Don't** introducir grises neutros de tono 0 en fondos o texto; la familia es hueso y verde.",
+      "**Don't** esconder las fuentes tras un plegable: el bloque «Fuentes» siempre está abierto bajo la respuesta.",
+      "**Don't** usar la serif en botones, insignias, listas o cuerpo de texto.",
+      "**Don't** usar etiquetas pequeñas en mayúsculas espaciadas como antetítulo sobre un título; ese estilo solo nombra el bloque «Fuentes» y el rótulo de marca."
+    ]
+  }
+}
